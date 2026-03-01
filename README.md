@@ -1,89 +1,100 @@
-# EcoVision AI: Waste Segregation & Carbon Footprint Analyzer 🌱
+# EcoVision AI: Waste Segregation & Sustainability Hub 🌱
 
-A production-ready, full-stack AI-powered web application that uses computer vision to classify waste and calculates real-time carbon footprint reduction potential.
-
-Built for smart city scalability and enterprise ESG reporting, this system provides actionable intelligence on sustainability metrics.
+EcoVision AI is a high-performance, full-stack web application designed to revolutionize urban waste management. Using advanced Computer Vision and real-time analytics, it classifies waste, calculates carbon footprint mitigation, and provides a premium visualization dashboard.
 
 ---
 
-## 🚀 Features
+## ✨ Key Features
 
-- **AI Image Classification**: Identifies waste as Biodegradable, Recyclable, or Hazardous using Transfer Learning with MobileNetV2.
-- **Carbon Footprint Calculator**: Computes CO₂ saved, equivalent trees saved, and assigns a normalized ESG impact score based on waste weight and category emission profiles.
-- **Sustainability Dashboard**: Real-time interactive charts (Chart.js) tracking organizational/city-wide sustainability metrics.
-- **Modern UI**: Clean, responsive, glassmorphic UI built with pure CSS and Vanilla JS.
+- **AI-Powered Classification**: Real-time identification of **Biodegradable**, **Recyclable**, and **Hazardous** waste using a deep learning model.
+- **Sustainability Calculator**: Instant projection of CO₂ mitigation and tree-planting equivalents based on waste category and weight.
+- **Premium Analytics Dashboard**: A high-end, glassmorphic data hub featuring interactive Chart.js visualizations (Pie, Bar, and Line charts).
+- **Active Learning Support**: Built-in feedback loop allowing users to correct AI predictions, improving long-term accuracy.
+- **Modern UI/UX**: State-of-the-art dark/light mode interface with fluid animations and responsive layout.
 
-## 🏗️ Architecture Stack
+---
 
-- **Frontend**: HTML5, Modern Vanilla CSS (Glassmorphism), Vanilla JavaScript, Chart.js
-- **Backend**: Python 3, Flask, Flask-SQLAlchemy
-- **Database**: SQLite (scalable structure for rapid prototyping)
-- **AI/ML Engine**: TensorFlow, Keras (MobileNetV2 architecture)
+## 🛠️ Tech Stack
 
-## 📋 Pre-requisites
-- Python 3.9+ 
-- Virtual Environment recommended (`venv`)
+- **Frontend**: HTML5, Vanilla CSS (Glassmorphism), Vanilla JavaScript, Chart.js
+- **Backend**: Python 3.9+, Flask, Flask-SQLAlchemy
+- **AI Engine**: TensorFlow, Keras (MobileNetV2)
+- **Database**: SQLite (Production-ready structure)
+- **Deployment**: Gunicorn (WSGI)
 
-## 🛠️ Setup & Local Run Instructions
+---
 
-1. **Clone & Navigate**
-   ```bash
-   cd waste-analyzer
-   ```
+## � Getting Started
 
-2. **Create and Activate Virtual Environment**
-   ```bash
-   python -m venv venv
-   
-   # Windows
-   .\venv\Scripts\activate
-   # Mac/Linux
-   source venv/bin/activate
-   ```
+### 1. Installation
+Clone the repository and install dependencies within a virtual environment:
 
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
+```bash
+# Windows
+python -m venv venv
+.\venv\Scripts\activate
+pip install -r requirements.txt
 
-4. **Initialize AI Architecture** (Optional but recommended)
-   Since the pre-trained weights (`.h5` file) can be large, you can generate the model architecture locally:
-   ```bash
-   python train_model.py
-   ```
-   *Note: If `waste_model.h5` is not found, the app gracefully falls back to a deterministic Mock Prediction Engine to ensure hackathon demo continuity.*
+# Linux/Mac
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
 
-5. **Run the Application**
-   ```bash
-   python app.py
-   ```
-   The Flask app will start on standard port 5000.
+### 2. Local Run
+To start the server locally:
 
-6. **View the App**
-   Open your browser and navigate to: [http://localhost:5000](http://localhost:5000)
+```bash
+python app.py
+```
+The application will be available at [http://127.0.0.1:5000](http://127.0.0.1:5000)
+
+---
+
+## 🌍 Deployment
+
+This project is optimized for deployment on platforms like **Render**, **Railway**, or **Heroku**.
+
+- **Procfile**: Included for production WSGI serving with Gunicorn.
+- **Requirements**: Fully specified with production-grade dependencies.
+- **Environment**: Automatically handles directory creation for uploads and data storage.
+
+### Deploying to Render (Recommended)
+1. Connect your GitHub repository to Render.
+2. Set **Build Command** to: `pip install -r requirements.txt`
+3. Set **Start Command** to: `gunicorn "app:create_app()"`
+
+---
+
+## 📁 Repository Structure
+
+- `/routes`: Flask blueprints for prediction, calculation, and data.
+- `/static`: Premium CSS, JavaScript, and Icons.
+- `/templates`: Dynamic HTML components.
+- `/model`: Pre-trained AI classification model.
+- `/database`: SQLAlchemy models and schemas.
+
+---
 
 ## 🧪 Demo Flow (Testing Instructions)
 
-To test the end-to-end functionality required for a hackathon demo:
+To test the end-to-end functionality:
 
-1. **Navigate** to `http://localhost:5000`
-2. **Upload** an image (e.g., a plastic water bottle).
-3. The AI Engine will predict `"Recyclable"` with confidence (simulated if no heavy weights are loaded for demo speed).
-4. Enter `0.4` kg in the Weight Input field.
-5. Click **Calculate Savings**.
-6. The exact output will demonstrate:
-   - **CO₂ Saved**: 1.6 kg
-   - **Trees Equivalent**: 0.07
-   - **Impact Score**: 82
-7. Navigate to the **Sustainability Dashboard** in the navbar to see the data aggregated in real-time charts (Pie, Bar, Line).
+1. **Launch**: Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
+2. **Classify**: Upload an image (e.g., a plastic bottle or an apple core).
+3. **Analyze**: The AI will predict the category (e.g., "Recyclable").
+4. **Input Weight**: Enter a sample weight (e.g., `0.5` kg) and click **Calculate**.
+5. **Impact**: View the real-time CO₂ mitigation and tree-equivalent stats.
+6. **Dashboard**: Visit the **Sustainability Hub** to see your data aggregated into live charts.
+
+---
 
 ## 🔮 Future Scalability Path
 
-This project is architected with scalability in mind.
-
-1. **IoT Smart Bins**: Can be retrofitted onto Raspberry Pi cameras over edge-computing to classify waste directly at the bin.
-2. **Smart City API Exposure**: The Flask routes are already cleanly separated into Blueprints (`/predict`, `/calculate`, `/dashboard-data`), making it trivial to connect to municipal analytics endpoints securely via JWT.
-3. **ESG Corporate Reporting**: Extended database metrics can be exported seamlessly into enterprise sustainability software packages via CSV/JSON dumps.
+- **IoT Integration**: Deploy models to Raspberry Pi cameras for real-time waste sorting at the bin.
+- **Advanced Computer Vision**: Move beyond three categories to detect specific materials (e.g., HDPE, LDPE, Paper, Aluminum).
+- **Gamification**: Introduce "Eco-Points" and user leaderboards to incentivize sustainable habits.
+- **Smart City API**: Expose endpoints for integration with municipal municipal waste management systems.
 
 ---
-*Built to power the sustainable cities of tomorrow.*
+*Built for the sustainable smart cities of the future.*
