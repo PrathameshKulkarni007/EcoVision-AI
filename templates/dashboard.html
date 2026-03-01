@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoVision AI | Sustainability Dashboard</title>
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="navbar-wrapper">
+        <nav class="navbar animate-in">
+            <div class="nav-brand">
+                <i class="fa-solid fa-leaf"></i> EcoVision<span>AI</span>
+            </div>
+            <div class="nav-links">
+                <a href="/">Classification Engine</a>
+                <a href="/dashboard" class="active">Sustainability Hub</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <main class="container">
+        <header class="text-center mb-12 animate-in delay-100">
+            <h1 class="gradient-text">Sustainability Hub</h1>
+            <p class="subtitle">Real-time macro analysis of municipal waste processing and carbon offset metrics.</p>
+
+            <!-- Data Integrity Alert -->
+            <div id="integrity-warning" class="hidden alert alert-error animate-pulse mx-auto"
+                style="max-width: 600px; margin-top: 2rem;">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <div class="text-left">
+                    <span class="font-bold block">Integrity Alert Active</span>
+                    <span class="small-text">Sustainability metrics are suspended due to detected manual overrides.
+                        Restoring strict data governance protocol.</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Premium KPI Section -->
+        <div id="dashboard-kpis" class="grid-cols-3 mb-8 animate-in delay-200">
+
+            <div class="card stat-card">
+                <div class="flex-between mb-4">
+                    <div class="micro-text text-emerald">Waste Processed</div>
+                    <div class="icon-circle bg-emerald-dim"><i class="fa-solid fa-recycle"></i></div>
+                </div>
+                <div class="kpi-value"><span id="kpi-waste">0</span><span class="unit ml-1">kg</span></div>
+                <div class="progress-bar-bg small mt-4">
+                    <div class="progress-bar-fill bg-emerald-gradient" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <div class="card stat-card">
+                <div class="flex-between mb-4">
+                    <div class="micro-text text-indigo">Carbon Mitigation</div>
+                    <div class="icon-circle bg-indigo-dim"><i class="fa-solid fa-cloud-arrow-down"></i></div>
+                </div>
+                <div class="kpi-value"><span id="kpi-co2">0.0</span><span class="unit ml-1">kg</span></div>
+                <div class="progress-bar-bg small mt-4">
+                    <div class="progress-bar-fill bg-indigo-gradient" style="width: 88%"></div>
+                </div>
+            </div>
+
+
+
+            <div class="card stat-card">
+                <div class="flex-between mb-4">
+                    <div class="micro-text text-secondary">AI Reliability Index</div>
+                    <div class="icon-circle bg-violet-dim"><i class="fa-solid fa-microchip"
+                            style="color: var(--accent-violet);"></i></div>
+                </div>
+                <div class="kpi-value text-primary" id="kpi-reliability">0%</div>
+                <div class="flex-between mt-4 small-text">
+                    <span class="text-secondary">Network Health</span>
+                    <span class="text-success font-bold">Stable</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Charts Grid -->
+        <div id="dashboard-charts" class="grid-cols-2 animate-in delay-300">
+            <div class="premium-chart">
+                <h4 class="mb-6"><i class="fa-solid fa-chart-pie mr-2 text-muted"></i> Confidence Distribution</h4>
+                <div class="chart-wrapper">
+                    <canvas id="categoryPieChart"></canvas>
+                </div>
+            </div>
+
+
+            <div class="premium-chart">
+                <h4 class="mb-6"><i class="fa-solid fa-chart-line mr-2 text-muted"></i> 7-Day Mitigation Trend</h4>
+                <div class="chart-wrapper">
+                    <canvas id="trendLineChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="premium-chart" style="grid-column: span 3;">
+            <h4 class="mb-6"><i class="fa-solid fa-chart-simple mr-2 text-muted"></i> Stream Confidence Breakdown
+            </h4>
+            <div class="chart-wrapper" style="height: 280px;">
+                <canvas id="co2BarChart"></canvas>
+            </div>
+        </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <button class="btn btn-outline btn-sm" onclick="resetDashboardData()"
+                style="color: var(--status-error); border-color: rgba(211, 47, 47, 0.2); opacity: 0.6;">
+                <i class="fa-solid fa-trash-can mr-2"></i> Reset All Data Records
+            </button>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadDashboardData === 'function') {
+                loadDashboardData();
+            }
+        });
+    </script>
+</body>
+
+</html>
